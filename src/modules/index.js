@@ -1,12 +1,11 @@
+import UserRouter from './message';
+import MessageRouter from './user';
+
 const APIPREFIX = '/api/v1';
 
 const routes = (app) => {
-  app.use(APIPREFIX, (req, res, next) => {
-    return res.status(200).json({
-      message: 'It is working',
-    });
-  });
-
+  app.use(APIPREFIX, UserRouter);
+  app.use(APIPREFIX, MessageRouter);
   return app;
 };
 
