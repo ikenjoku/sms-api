@@ -4,6 +4,7 @@
   "description": "SMS Management Application API",
   "main": "app.js",
   "scripts": {
+    "dev": "NODE_ENV=development nodemon --exec babel-node src/bin/www.js",
     "test": "yarn test"
   },
   "repository": {
