@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 });
 
 // Catch all errors
-app.use((err, req, res) => res.status(err.status || 500).json({
+app.use((err, req, res, next) => res.status(err.status || 500).json({
   status: err.status,
   message: err.message,
   stack: err.stack,
