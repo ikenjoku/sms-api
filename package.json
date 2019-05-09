@@ -1,0 +1,36 @@
+{
+  "name": "sms-api",
+  "version": "1.0.0",
+  "description": "SMS Management Application API",
+  "main": "index.js",
+  "scripts": {
+    "test": "yarn test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ikenjoku/sms-api.git"
+  },
+  "keywords": [
+    "sms"
+  ],
+  "author": "Ikechukwu Njoku",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ikenjoku/sms-api/issues"
+  },
+  "homepage": "https://github.com/ikenjoku/sms-api#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.6",
+    "morgan": "^1.9.1"
+  }
+}
