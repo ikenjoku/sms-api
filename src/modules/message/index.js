@@ -1,19 +1,33 @@
 import express from 'express';
-import UserController from './MessageController';
+import MessageController from './MessageController';
 import validateRecipient from '../../middlewares/validateRecipient';
 
 const Router = express.Router();
 
-// Send a message a user POST /messages
+// Send a message to a contact
 Router.post(
   '/messages',
   validateRecipient,
-  UserController.sendMessage,
+  MessageController.sendMessage,
 );
-// Send message all for a user GET /messages:id
+
+// Get all messages sent by a user GET /messages?type=sent
+// Get all messages recieved by a user GET /messages?type=recieved
+Router.get(
+  '/contacts/:userId/messages',
+  MessageController.getMessages,
+);
 
 // Read a message  PUT /message/:id/read
+Router.put(
+  '/contacts/:userId/messages/:messageId',
+  MessageController.readMessage,
+);
 
-// Mark all as read PUT/message/read-all
+// Delete a message DELETE /message/:id
+Router.delete(
+  '/contacts/:userId/messages/:messageId',
+  MessageController.deleteMessage,
+);
 
 export default Router;
