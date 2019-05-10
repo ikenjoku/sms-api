@@ -20,7 +20,7 @@ Router.get(
 
 // Read a message  PUT /message/:id/read
 Router.put(
-  '/contacts/:userId/messages/:messageId',
+  '/contacts/:userId/messages/:messageId/read',
   MessageController.readMessage,
 );
 
