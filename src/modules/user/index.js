@@ -1,15 +1,18 @@
 import express from 'express';
 import UserController from './UserController';
+import validators from '../../middlewares/validators';
 
 const Router = express.Router();
 
 Router.post(
-  '/signup',
-  UserController.signUpUser,
+  '/register',
+  validators.validateUserSignUp,
+  UserController.registerUser,
 );
 
-Router.get(
+Router.post(
   '/login',
+  validators.validateUserLogin,
   UserController.loginUser,
 );
 
