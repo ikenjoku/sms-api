@@ -29,14 +29,12 @@ class MessageController {
 
     Message.find(searchParam, (err, messages) => {
       if (err) return next(err);
-
       if (!messages.length) {
         return res.status(200).json({
           message: `You have not ${type} any message`,
           messages,
         });
       }
-
       return res.status(200).json({
         message: `Successfully retrieved ${type} messages`,
         messages,
@@ -45,7 +43,6 @@ class MessageController {
   }
 
   static readMessage(req, res, next) {
-    // update status to Seen
     const { messageId } = req.params;
     Message.findById(messageId, (err, message) => {
       if (err) return next(err);
@@ -58,11 +55,9 @@ class MessageController {
   }
 
   static deleteMessage(req, res, next) {
-    // delete a message
     const { messageId } = req.params;
     Message.findByIdAndDelete(messageId, (err) => {
       if (err) return next(err);
-
       return res.status(200).json({
         message: 'Successfully deleted',
       });

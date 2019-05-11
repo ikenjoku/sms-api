@@ -20,14 +20,12 @@ Router.get(
   MessageController.getMessages,
 );
 
-// Read a message  PUT /message/:id/read
 Router.put(
   '/contacts/:userId/messages/:messageId/read',
   tokenizer.verifyToken,
   MessageController.readMessage,
 );
 
-// Delete a message DELETE /message/:id
 Router.delete(
   '/contacts/:userId/messages/:messageId',
   tokenizer.verifyToken,
