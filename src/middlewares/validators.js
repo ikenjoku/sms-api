@@ -81,7 +81,7 @@ const validators = {
     if (typeof username === 'string' && !username.trim()) {
       validationMessageArr.push({ username: 'Username is Required' });
     }
-    if (typeof phone !== 'number') {
+    if (typeof parseInt(phone, 10) !== 'number') {
       validationMessageArr.push({ phone: 'Invalid phone number' });
     }
 
