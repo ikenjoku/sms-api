@@ -1,19 +1,35 @@
 import express from 'express';
-import UserController from './MessageController';
+import MessageController from './MessageController';
+import tokenizer from '../../helpers/tokenizer';
+import validateMessageType from '../../middlewares/validateMessageType';
 import validateRecipient from '../../middlewares/validateRecipient';
 
 const Router = express.Router();
 
-// Send a message a user POST /messages
 Router.post(
   '/messages',
+  tokenizer.verifyToken,
   validateRecipient,
-  UserController.sendMessage,
+  MessageController.sendMessage,
 );
-// Send message all for a user GET /messages:id
 
-// Read a message  PUT /message/:id/read
+Router.get(
+  '/contacts/:userId/messages',
+  tokenizer.verifyToken,
+  validateMessageType,
+  MessageController.getMessages,
+);
 
-// Mark all as read PUT/message/read-all
+Router.put(
+  '/contacts/:userId/messages/:messageId/read',
+  tokenizer.verifyToken,
+  MessageController.readMessage,
+);
+
+Router.delete(
+  '/contacts/:userId/messages/:messageId',
+  tokenizer.verifyToken,
+  MessageController.deleteMessage,
+);
 
 export default Router;

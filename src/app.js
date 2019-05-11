@@ -16,16 +16,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // connect to database
 if (process.env.NODE_ENV === 'production') {
-  // TODO: get url from mlab
   mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true });
-} else {
+} else if (process.env.NODE_ENV === 'development') {
   mongoose.connect('mongodb://localhost:27017/sms-api', { useNewUrlParser: true });
   const db = mongoose.connection;
   // mongo logs
   db.on('error', console.error.bind(console, 'connection error: '));
   db.once('open', () => { console.log('DB connection established'); });
+} else {
+  mongoose.connect('mongodb://localhost:27017/sms-api-testDB', { useNewUrlParser: true });
 }
-// routes
+// handle routes
 modules(app);
 
 // handle 404 error
