@@ -1,11 +1,11 @@
 import express from 'express';
 import MessageController from './MessageController';
 import tokenizer from '../../helpers/tokenizer';
+import validateMessageType from '../../middlewares/validateMessageType';
 import validateRecipient from '../../middlewares/validateRecipient';
 
 const Router = express.Router();
 
-// Send a message to a contact
 Router.post(
   '/messages',
   tokenizer.verifyToken,
@@ -13,11 +13,10 @@ Router.post(
   MessageController.sendMessage,
 );
 
-// Get all messages sent by a user GET /messages?type=sent
-// Get all messages recieved by a user GET /messages?type=recieved
 Router.get(
   '/contacts/:userId/messages',
   tokenizer.verifyToken,
+  validateMessageType,
   MessageController.getMessages,
 );
 

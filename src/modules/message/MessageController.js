@@ -2,13 +2,16 @@ import Message from '../../data/models/message';
 
 class MessageController {
   static sendMessage(req, res, next) {
-    const { text, senderId } = req.body;
-    if (!text || !senderId) {
+    const { text } = req.body;
+    if (!text) {
       const err = new Error('Please specify a message to send');
       err.status = 400;
       next(err);
     } else {
-      const newMessage = new Message(req.body);
+      const { user } = req.user;
+      const senderId = user._id;
+      const recipientId = req.recipient._id;
+      const newMessage = new Message({ text, senderId, recipientId });
       newMessage.save((err, message) => {
         if (err) return next(err);
         return res.status(201).json({
@@ -21,22 +24,21 @@ class MessageController {
 
   static getMessages(req, res, next) {
     const { userId } = req.params;
-    const { type } = req.query;
+    const { type } = req;
     const searchParam = type === 'sent' ? { senderId: userId } : { recipientId: userId };
-    const typeString = type === 'sent' ? 'sent' : 'recieved';
 
     Message.find(searchParam, (err, messages) => {
       if (err) return next(err);
 
       if (!messages.length) {
         return res.status(200).json({
-          message: `You have not ${typeString} any message`,
+          message: `You have not ${type} any message`,
           messages,
         });
       }
 
       return res.status(200).json({
-        message: `Successfully retrieved ${typeString} messages`,
+        message: `Successfully retrieved ${type} messages`,
         messages,
       });
     });
