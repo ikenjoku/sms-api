@@ -4,7 +4,7 @@
 
 ## 6.2
 
-SMS API is an application that allows users manage funtionalities of SMS (short message service).
+SMS API is an application that allows users manage functionalities of SMS (short message service).
 
 ## Features
 
