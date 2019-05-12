@@ -9,7 +9,7 @@ chai.should();
 chai.use(chaiHttp);
 
 describe('Authentication', () => {
-  before((done) => {
+  after((done) => {
     mongoose.connect(process.env.MONGO_TEST_DB_URL);
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error'));
