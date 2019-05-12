@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon --exec babel-node src/bin/www.js",
-    "test": "NODE_ENV=test mocha --require @babel/register --timeout 10000 src/test/**/**.spec.js  --exit --require regenerator-runtime/runtime"
+    "test": "NODE_ENV=test nyc mocha --require @babel/register --timeout 10000 src/test/**/**.spec.js  --exit --require regenerator-runtime/runtime",
+    "test:coverage": "istanbul cover _mocha"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
     "eslint-plugin-import": "^2.17.2",
     "mocha": "^6.1.4",
     "nodemon": "^1.19.0",
+    "nyc": "^14.1.1",
     "sinon": "^7.3.2",
     "sinon-chai": "^3.3.0",
     "sinon-express-mock": "^2.2.0"

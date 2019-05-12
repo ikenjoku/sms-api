@@ -13,7 +13,7 @@ dist
 # coverage report
 coverage
 .DS_Store
-
+.nyc_output
 # logs
 npm-debug.log
 logs
