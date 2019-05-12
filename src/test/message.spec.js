@@ -49,8 +49,9 @@ before((done) => {
     .post('/api/v1/register')
     .send(contact1)
     .end((err, res) => {
-      contact1Token = res.body.token;
-      contact1Id = res.body.user.id;
+      const { token, user } = res.body;
+      contact1Token = token;
+      contact1Id = user.id;
       done();
     });
 });
@@ -60,8 +61,9 @@ before((done) => {
     .post('/api/v1/register')
     .send(contact2)
     .end((err, res) => {
-      contact2Token = res.body.token;
-      contact2Id = res.body.user.id;
+      const { token, user } = res.body;
+      contact2Token = token;
+      contact2Id = user.id;
       done();
     });
 });
