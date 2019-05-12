@@ -24,7 +24,8 @@ Project API documentation can be found [here](https://documenter.getpostman.com/
 
 #### Testing
 
-For server-side tests, run `yarn test`
+* For server-side tests, run `yarn test`
+* For test coverage, run `yarn run test:coverage`
 
 ---
 
