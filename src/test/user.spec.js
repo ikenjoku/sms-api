@@ -9,6 +9,18 @@ chai.should();
 chai.use(chaiHttp);
 
 describe('Authentication', () => {
+  before((done) => {
+    mongoose.connect(process.env.MONGO_TEST_DB_URL);
+    const db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error'));
+    db.once('open', () => {
+      console.log('We are connected to test database!');
+      db.db.dropDatabase(() => {
+        done();
+      });
+    });
+  });
+
   after((done) => {
     mongoose.connect(process.env.MONGO_TEST_DB_URL);
     const db = mongoose.connection;

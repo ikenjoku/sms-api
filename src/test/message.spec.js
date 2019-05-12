@@ -1,6 +1,8 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+
 import app from '../app';
 
 dotenv.config();
@@ -51,6 +53,18 @@ before((done) => {
       contact2Id = res.body.user.id;
       done();
     });
+});
+
+after((done) => {
+  mongoose.connect(process.env.MONGO_TEST_DB_URL);
+  const db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'connection error'));
+  db.once('open', () => {
+    console.log('We are connected to test database!');
+    db.db.dropDatabase(() => {
+      done();
+    });
+  });
 });
 
 describe('Authentication', () => {
