@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon --exec babel-node src/bin/www.js",
-    "test": "yarn test"
+    "test": "NODE_ENV=test nyc mocha --require @babel/register --timeout 10000 src/test/**/**.spec.js  --exit --require regenerator-runtime/runtime",
+    "test:coverage": "istanbul cover _mocha"
   },
   "repository": {
     "type": "git",
@@ -23,8 +24,10 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -35,9 +38,18 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/register": "^7.4.4",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
-    "nodemon": "^1.19.0"
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.0",
+    "nyc": "^14.1.1",
+    "sinon": "^7.3.2",
+    "sinon-chai": "^3.3.0",
+    "sinon-express-mock": "^2.2.0"
   }
 }
